@@ -13,7 +13,9 @@ def main():
 	image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	image = cv2.GaussianBlur(image,(5,5),0)
 	image = cv2.threshold(image,180,255,cv2.THRESH_BINARY)[1]
-	cv2.imshow("Prepaired image", image)
+	name = "Prepaired image"
+	cv2.imshow(name, image)
+	cv2.imwrite(name +'.png',image)
 	cv2.waitKey()
 
 	# Compute image gradient
@@ -22,7 +24,9 @@ def main():
 	leftBorderR = cv2.filter2D(image,-1,leftBorder)
 	rightBorderR = cv2.filter2D(image,-1,rightBorder)
 	image = cv2.addWeighted(leftBorderR,1,rightBorderR,1,0)
-	cv2.imshow("Gradient image", image)
+	name = "Gradient image"
+	cv2.imshow(name, image)
+	cv2.imwrite(name +'.png',image)
 	cv2.waitKey()
 
 	# Do morphologic operation
@@ -31,6 +35,7 @@ def main():
 	image = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel[0])
 	mask = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel[1])
 	cv2.imshow("Mask", mask)
+	cv2.imwrite(name +'.png',image)
 	cv2.waitKey()
 	
 	image = cv2.bitwise_not(image)
@@ -41,7 +46,9 @@ def main():
 	image = cv2.morphologyEx(image, cv2.MORPH_OPEN, np.ones((5,15),np.float32),iterations=2)
 	image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, np.ones((5,15),np.float32))
 
-	cv2.imshow("Result", image)
+	name = "Result"
+	cv2.imshow(name, image)
+	cv2.imwrite(name +'.png',image)
 	cv2.waitKey()
 	
 
