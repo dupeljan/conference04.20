@@ -1,14 +1,20 @@
 import cv2
 import numpy as np
+import os
 
-IMG_PATH = "MorphTest.png"
+IMG_PATH = "imageSource/MorphTest.png"
+OUT_DIR = "morphEXout"
 
 def showWriteWait(name,img):
 	cv2.imshow(name, img)
-	cv2.imwrite(name +'.png',img)
+	cv2.imwrite(os.path.join(OUT_DIR,name +'.png'),img)
 	cv2.waitKey()
 		
 def main():
+	# Create dir for pictures
+	if not os.path.exists(OUT_DIR):
+		os.makedirs(OUT_DIR)
+
 	image = cv2.imread(IMG_PATH) 
 	cv2.imshow("Source image", image)
 	cv2.waitKey()

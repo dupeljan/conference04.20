@@ -1,2 +1,4 @@
 # conference04.20
-program.py allow you to test algorithm deskribed in the article
+program.py and morphEx.py allow you to test algorithm described in the article
+
+requirements: cv2, numpy
