@@ -50,6 +50,20 @@ def main():
 	cv2.imshow(name, image)
 	cv2.imwrite(name +'.png',image)
 	cv2.waitKey()
+
+	# Draw contours on image
+	contours = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[0]
+	image = cv2.imread(IMG_PATH) 
+	color = (0,255,0) # Green
+	# if you dont want bound rect, uncoment
+	#cv2.drawContours(image, contours, -1, (255,0,0), 1)
+	for c in contours:
+		x,y,w,h = cv2.boundingRect(c)
+		image = cv2.rectangle(image,(x,y),(x+w,y+h),color,1)
+	name = "Contours"
+	cv2.imshow(name, image)
+	cv2.imwrite(name +'.png',image)
+	cv2.waitKey()
 	
 
 	
